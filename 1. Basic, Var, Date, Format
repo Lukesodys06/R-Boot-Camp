@@ -1,0 +1,145 @@
+#============== Week 3 Day 4 ==========#
+#-------------Kyung Kwan Jang ---------#
+
+library(KoNLP)
+a <-1
+getwd()
+# Normally don't set your own Directory location #
+setwd("C:/....")
+
+#========= 변수 variables ==========#
+# prefered Variables
+# a, b, a1, b1, .x # .x means hidden variables?
+# not prefered nor allowed
+# 2a .2 a-b
+
+# Allocating
+a <- 1  #Scala variable (meaning only one)
+b <<- 2
+c = 3 #Not prefered
+d <- 'b'   #string variable
+e <- '1'
+a - e    #Error : E is not int
+a - b
+a - as.integer(e)
+a - as.numeric(e)  # Type Change
+
+var3 <- Sys.Date()   # System Date
+var3
+as.character(var3)   # Date to Charracter
+
+var4 <- c("a", "b", "c")  #** Multiple values in one array. vector **
+var5 <- c(a, b, c)
+
+string1 <- "String example"
+string1
+
+comp <- c(1, 'a')   # Initializing Vector with different types
+comp                # Automatically change 1 to charater
+
+class(comp)             # How to check Type of Variable
+
+#--- Note! --#
+# DO NOT use Variable names that is has its function (예약어)
+#ex) c , sum, break, else, FALSE
+
+#Squence
+1:10
+seq1 <- 1:5
+seq1            #It makes a Vector
+seq.int(2,3)
+seq.default(1, 6, 2)
+seq(from = 1, to =5, by=.5)     # You can skip  'from, to, by...'
+seq.Date(as.Date("2019-04-09"), Sys.Date())
+
+(seq2 <- seq(1,3,.2))       # ( Statement )  <- makes to print right away
+(seq3 <- seq(as.Date('2019/04/01'), as.Date('2019/04/30'), 1))
+(seq4 <- seq(as.Date("2019-04-09"), Sys.Date(), 1))
+length(seq4)
+
+as.Date("30-04-2019")     # Be care mindful of Date Format!! 2030-04-20
+as.Date("30-04-2018", "%d-%m-%y")      #* Change Date Format
+
+(seq5 <- seq(from = as.Date('1992/01/22'), to = Sys.Date(), by = 'year'))
+#Not Does NOT work Character
+
+# List of Variables!!
+objects()
+objects(all.names=T)     # Hidden Variables included!
+
+# Delete Variables
+rm(list=ls())       # Delete Everything!
+a <- c(3, 5)
+rm(a)
+
+## Calulation Fuction
+
+7%/%3   #2 
+7%%3    #1  (mod)
+3^2     #9
+3**2    #9  3^2
+
+#Automatic formating
+10000
+100000       #1e+05
+1e6
+
+#NA / NULL
+#Null - No Value / Yet to be determined
+#NA - Not applicable. But takes a meomory space
+
+cat(1, NA, 3)        #cat : just print 
+cat(1, NULL, 4)
+
+sum(1, NA, 3)        #Result: NA    
+sum(1, NULL, 4)      #Result: 5
+
+#Funny NULL variable
+NULL + 3             #Result: numeric(0)   - Meaning NULL!
+sum(1, NULL, 4)      #Group Function doesn't care about NULL
+
+NA + 3               # NA
+
+#Checking NA or NULL
+a <- c(NA,3)
+is.array(a)
+b <- c(4,5,6)
+is.array(b)     # falase...
+is.null(NA)
+is.NA(NA)
+is.NA(NULL)     # Not Even FALSE. JUST ERROR! SInce NULL is nothing
+
+d <- 1:5
+is.array(d)
+is.vector(d)
+
+# Format!!
+help(strftime)
+
+strftime(Sys.Date(), format = '%Y%m%d-%l')   #String from Time. Format changeParis, France
+strftime(Sys.Date(), '%A%B%C')
+help(strptime)
+
+strptime('1992-01-22', '%Y-%m-%d')           #Time -> String. Set format to follow
+
+as.character(Sys.Date(), '%A')
+strftime(Sys.Date(), '%A')
+
+
+#Practice Question
+# Print date with 1st Date in each month for the year 2019
+
+as.character(seq(as.Date('2019/01/01'), as.Date('2019/12/30'), 'month'), '%A')
+(as.character(Sys.Date(), '%Y-%m-%A'))
+
+#System Time. System Date doesn't include
+Sys.time()
+date()     #American Style Date
+
+# Date Calculatiom
+days_m = seq(as.Date('2019/01/01'), as.Date('2019/12/30'), 'month')
+Sys.Date() + 3        # Basic unit is Day for number
+Sys.Date() - days_m   # Results are in DAYS!
+date() - days_m       # This doesn't work! Date()
+
+install.packages("lubridate")
